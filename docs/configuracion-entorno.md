@@ -621,9 +621,48 @@ public class SpringaiApplication implements ApplicationRunner {
 - **Líneas 19**: `Convertir JSON a objetos Java` Usa `ObjectMapper` de Jackson para convertir el JSON en listas de objetos `Author` y `Book`.
 - **Líneas 19**: `Guardar en la base de datos` Utiliza `authorService` y `bookService` para guardar los datos en la base de datos.
 
-Para facilitar el inicio del taller y omitir la configuración inicial del entorno, puedes descargar el proyecto base desde el repositorio de GitHub en la rama `01_Structure_Project`. Esto te permitirá comenzar directamente con el código y la estructura básica del proyecto ya configurados.
+## **Paso 12: Archivo `docker-compose.yml`**
 
-### **Descarga del Proyecto Base**
+Este archivo utiliza la configuración de Docker Compose para iniciar un servicio de base de datos PostgreSQL en un contenedor. Con este archivo, puedes levantar el contenedor de PostgreSQL con solo un comando, lo que simplifica el manejo del entorno de desarrollo y asegura que todos los colaboradores del proyecto tengan una configuración consistente.
+
+```yaml title="docker-compose.yml" linenums="1"
+version: "3.8"
+services:
+  postgres_db:
+    container_name: "postgres_db"
+    image: "postgres"
+    env_file: ./.env
+    ports:
+      - ${DB_LOCAL_PORT}:${DB_DOCKER_PORT}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres-data:${DB_VOLUME_URL}
+
+volumes:
+  postgres-data:
+```
+
+### **Explicación de la Configuración**
+
+- `version: "3.8"`: Especifica la versión de Docker Compose. La versión 3.8 es compatible con las últimas características de Docker.
+
+- `services`: Define los servicios que Docker Compose gestionará. En este caso, tenemos solo un servicio postgres_db para PostgreSQL.
+
+- `postgres_db`:
+      - `container_name`: Nombre del contenedor. Esto facilita la identificación del contenedor en la lista de contenedores activos.
+      - `image`: Especifica la imagen de Docker que se utilizará. En este caso, `postgres` se descargará de Docker Hub.
+      - `env_file`: Carga variables de entorno desde un archivo `.env` ubicado en la raíz del proyecto. Este archivo debe contener las credenciales de la base de datos y otros detalles de configuración.
+      - `ports`: Mapea el puerto de PostgreSQL en el contenedor (`DB_DOCKER_PORT`) a un puerto en la máquina local (`DB_LOCAL_PORT`). Esto permite acceder a la base de datos desde la máquina host.
+      - `environment`: Define variables de entorno adicionales específicas del servicio, como el nombre de usuario, la contraseña y el nombre de la base de datos.
+      - `volumes`: Monta un volumen persistente (`postgres-data`) en el contenedor, mapeado al directorio especificado en `DB_VOLUME_URL` (ubicado en el archivo `.env`). Esto asegura que los datos de la base de datos se mantengan incluso si el contenedor se reinicia o elimina.
+- `volumes`: Define el volumen `postgres-data` para la persistencia de datos, lo que permite que la información almacenada en PostgreSQL persista entre reinicios de contenedores.
+
+## **Descarga del Proyecto Base**
+
+Para facilitar el inicio del taller y omitir la configuración inicial del entorno, puedes descargar el proyecto base desde el repositorio de GitHub en la rama `01_Structure_Project`. Esto te permitirá comenzar directamente con el código y la estructura básica del proyecto ya configurados.
 
 Puedes acceder al proyecto en la siguiente URL:
 
