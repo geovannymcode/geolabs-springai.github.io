@@ -152,7 +152,7 @@ public class FunctionCallingView extends VerticalLayout {
 
 ### **Visualización del Formulario**
 
-Como se muestrar en la Figura #4, asi luce la interfaz de `FunctionCallingView` en Vaadin:
+Como se muestrar en la **Figura #4**, asi luce la interfaz de `FunctionCallingView` en Vaadin:
 
 ![GeoLabs SpringAI](./files/SpringAI-06.png "GeoLabs SpringAI")
 **Figura #4: Formulario Function Calling**
