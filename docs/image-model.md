@@ -67,61 +67,67 @@ Este controlador permite realizar análisis multimodal. El usuario carga una ima
 
 ```java title="MultiModalityController.java" linenums="1"
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/multis")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
-public class ImageController {
+public class MultiModalityController {
 
+    private final OpenAiChatModel openAiChatModel;
     private final OpenAiImageModel openAiImageModel;
 
-    @GetMapping("/generate")
-    public ResponseEntity<ResponseDTO<String>> generateImage(@RequestParam("param") String param) {
-        ImageResponse imageResponse = openAiImageModel.call(new ImagePrompt(param,
+    @GetMapping("/upload")
+    public String multiModalityUpload(@RequestParam("image") MultipartFile imageFile) throws Exception{
+        UserMessage userMessage = new UserMessage(
+                "Explicame que ves en esta imagen?",
+                List.of(new Media(MimeTypeUtils.IMAGE_JPEG, new ByteArrayResource(imageFile.getBytes())))
+        );
+
+        ChatResponse response = openAiChatModel.call(new Prompt(List.of(userMessage)));
+        String description = response.getResult().getOutput().getContent();
+
+        String url = openAiImageModel.call(new ImagePrompt("Generame una caricatura de esta descripcion: " + description,
                 OpenAiImageOptions.builder()
                         .withModel("dall-e-3")
-                        .withQuality("hd")
-                        .withN(1) //cantidad de imagenes a generar, dall-e-3 solo permite n=1
+                        .withQuality("standard")
+                        .withN(1)
                         .withHeight(1024)
                         .withWidth(1024)
                         .build()
-        ));
+        )).getResult().getOutput().getUrl();
 
-        String url = imageResponse.getResult().getOutput().getUrl();
-
-        return ResponseEntity.ok(new ResponseDTO<>(200, "success", url));
+        return url;
     }
 }
 ```
 
-- **Línea 21** `@RestController`: Define el controlador como un manejador de solicitudes HTTP en formato JSON.
+- **Línea 1** `@RestController`: Define el controlador como un manejador de solicitudes HTTP en formato JSON.
 
-- **Línea 21** `@RequestMapping("/multis")`: Define la ruta base del controlador como /multis.
+- **Línea 2** `@RequestMapping("/multis")`: Define la ruta base del controlador como /multis.
 
-- **Línea 21** `@RequiredArgsConstructor`: Genera un constructor que inyecta OpenAiChatModel y OpenAiImageModel.
+- **Línea 3** `@RequiredArgsConstructor`: Genera un constructor que inyecta OpenAiChatModel y OpenAiImageModel.
 
-- **Línea 21** `@GetMapping("/upload")`: Define el endpoint /multis/upload, que responderá a solicitudes GET para procesar imágenes.
+- **Línea 9** `@GetMapping("/upload")`: Define el endpoint /multis/upload, que responderá a solicitudes GET para procesar imágenes.
 
-- **Línea 21** `public String multiModalityUpload(@RequestParam("image") MultipartFile imageFile) throws Exception`: Método que toma una imagen como entrada y devuelve la URL de la caricatura generada.
+- **Línea 10** `public String multiModalityUpload(@RequestParam("image") MultipartFile imageFile) throws Exception`: Método que toma una imagen como entrada y devuelve la URL de la caricatura generada.
 
-- **Línea 21** `new UserMessage(...)`: Crea un mensaje de usuario pidiendo al modelo que describa el contenido de la imagen cargada.
+- **Línea 11** `new UserMessage(...)`: Crea un mensaje de usuario pidiendo al modelo que describa el contenido de la imagen cargada.
 
-- **Línea 21** `List.of(new Media(...))`: Adjunta la imagen cargada como un recurso (Media) en formato JPEG.
+- **Línea 13** 
+     - `List.of(new Media(...))`: Adjunta la imagen cargada como un recurso (Media) en formato JPEG.
+     - `new ByteArrayResource(imageFile.getBytes())`: Convierte el archivo de imagen en un recurso de bytes para enviarlo al modelo.
 
-- **Línea 21** `new ByteArrayResource(imageFile.getBytes())`: Convierte el archivo de imagen en un recurso de bytes para enviarlo al modelo.
+- **Línea 16** `openAiChatModel.call(...)`: Llama al modelo de chat para procesar el mensaje del usuario y obtener una descripción de la imagen.
 
-- **Línea 21** `openAiChatModel.call(...)`: Llama al modelo de chat para procesar el mensaje del usuario y obtener una descripción de la imagen.
+- **Línea 17** `String description = response.getResult().getOutput().getContent();`: Extrae la descripción generada por el modelo a partir de la imagen cargada.
 
-- **Línea 21** `String description = response.getResult().getOutput().getContent();`: Extrae la descripción generada por el modelo a partir de la imagen cargada.
+- **Línea 19** 
+     - `openAiImageModel.call(...)`: Llama nuevamente al modelo de generación de imágenes para crear una caricatura basada en la descripción obtenida.
+     - `new ImagePrompt("Generame una caricatura de esta descripcion: " + description, ...)`: Crea un ImagePrompt con la descripción generada en el paso anterior.
 
-- **Línea 21** `openAiImageModel.call(...)`: Llama nuevamente al modelo de generación de imágenes para crear una caricatura basada en la descripción obtenida.
+- **Líneas 21-25** `withModel("dall-e-3"), withQuality("standard"), withN(1), withHeight(1024), withWidth(1024)`: Configura las opciones para la generación de la caricatura, similar al controlador anterior.
 
-- **Línea 21** `new ImagePrompt("Generame una caricatura de esta descripcion: " + description, ...)`: Crea un ImagePrompt con la descripción generada en el paso anterior.
+- **Línea 27** `getResult().getOutput().getUrl()`: Obtiene la URL de la caricatura generada.
 
-- **Línea 21** `withModel("dall-e-3"), withQuality("standard"), withN(1), withHeight(1024), withWidth(1024)`: Configura las opciones para la generación de la caricatura, similar al controlador anterior.
-
-- **Línea 21** `getResult().getOutput().getUrl()`: Obtiene la URL de la caricatura generada.
-
-- **Línea 21** `return url;`: Devuelve la URL de la caricatura generada como respuesta.
+- **Línea 29** `return url;`: Devuelve la URL de la caricatura generada como respuesta.
 
 ## **Paso 3: Integración en Vaadin `MultiModality`**
 
@@ -181,41 +187,42 @@ public class ImageGeneratorView extends VerticalLayout {
 }
 ```
 
-- **Línea 21** `@Route("image-generator")`: Define la ruta de esta vista como /image-generator. Esto permite acceder a la vista a través de esta URL.
+- **Línea 1** `@Route("image-generator")`: Define la ruta de esta vista como /image-generator. Esto permite acceder a la vista a través de esta URL.
 
-- **Línea 21** `@Menu(title = "Image Model", order = 3)`: Añade esta vista al menú lateral con el título "Image Model" y la coloca en la tercera posición.
+- **Línea 2** `@Menu(title = "Image Model", order = 3)`: Añade esta vista al menú lateral con el título "Image Model" y la coloca en la tercera posición.
 
-- **Línea 21** `public class ImageGeneratorView extends VerticalLayout`: La clase ImageGeneratorView extiende VerticalLayout de Vaadin, que permite organizar los componentes en una disposición vertical.
+- **Línea 3** `public class ImageGeneratorView extends VerticalLayout`: La clase ImageGeneratorView extiende VerticalLayout de Vaadin, que permite organizar los componentes en una disposición vertical.
 
-- **Línea 21** `RestTemplate restTemplate`: Cliente de Spring para hacer solicitudes HTTP al backend.
+- **Línea 5** `RestTemplate restTemplate`: Cliente de Spring para hacer solicitudes HTTP al backend.
 
-- **Línea 21** `String backendUrl`: Define la URL del endpoint en el backend (`/images/generate`) al que se enviarán las solicitudes para generar la imagen.
+- **Línea 6** `String backendUrl`: Define la URL del endpoint en el backend (`/images/generate`) al que se enviarán las solicitudes para generar la imagen.
 
-- **Línea 21** `setSizeFull()`: Configura el diseño para ocupar todo el espacio disponible en la ventana.
+- **Línea 9** `setSizeFull()`: Configura el diseño para ocupar todo el espacio disponible en la ventana.
 
-- **Línea 21** `TextArea descriptionInput`: Campo de entrada donde el usuario puede escribir la descripción de la imagen que desea generar.
+- **Línea 12** `TextArea descriptionInput`: Campo de entrada donde el usuario puede escribir la descripción de la imagen que desea generar.
 
-- **Línea 21** `descriptionInput.setWidth("400px")`: Establece el ancho del campo de texto en 400 píxeles para mejorar la experiencia visual del usuario.
+- **Línea 13** `descriptionInput.setWidth("400px")`: Establece el ancho del campo de texto en 400 píxeles para mejorar la experiencia visual del usuario.
 
-- **Línea 21** `Button generateButton`: Botón que, al hacer clic, iniciará el proceso de generación de la imagen llamando al backend.
+- **Línea 16 ds** `Button generateButton`: Botón que, al hacer clic, iniciará el proceso de generación de la imagen llamando al backend.
 
-- **Línea 21** `Image imageDisplay`: Componente de Vaadin para mostrar la imagen generada.
-- **Línea 21** `imageDisplay.setWidth("400px") y imageDisplay.setHeight("400px")`: Configura el tamaño del contenedor de la imagen en 400x400 píxeles para que la imagen generada se ajuste visualmente al espacio asignado.
+- **Línea 19** `Image imageDisplay`: Componente de Vaadin para mostrar la imagen generada.
+- **Líneas 20-21** `imageDisplay.setWidth("400px") y imageDisplay.setHeight("400px")`: Configura el tamaño del contenedor de la imagen en 400x400 píxeles para que la imagen generada se ajuste visualmente al espacio asignado.
 
-- **Línea 21** `generateButton.addClickListener`: Define la acción que ocurre al hacer clic en el botón "Generate Image".
+- **Líneas 23-25** `generateButton.addClickListener`: Define la acción que ocurre al hacer clic en el botón "Generate Image".
     - `descriptionInput.getValue()`: Obtiene la descripción ingresada por el usuario.
     - `url`: Construye la URL de la solicitud al backend, agregando el parámetro param con la descripción de la imagen.
 
-- **Línea 21** `restTemplate.exchange(...)`: Realiza una solicitud GET al backend para obtener la URL de la imagen generada.
+- **Líneas 28-32** 
+    - `restTemplate.exchange(...)`: Realiza una solicitud GET al backend para obtener la URL de la imagen generada.
     - `new ParameterizedTypeReference<ResponseDTO<String>>() {}`: Permite manejar la respuesta como un ResponseDTO con un String que contiene la URL de la imagen.
 
-- **Línea 21** `Validación de la Respuesta`:
-    - Verifica que la respuesta sea exitosa (2xx) y que el cuerpo de la respuesta no sea nulo.
-    - String imageUrl = responseEntity.getBody().getData();: Extrae la URL de la imagen generada.
-    - imageDisplay.setSrc(imageUrl);: Establece la URL de la imagen en el componente imageDisplay, lo que hace que la imagen se cargue y muestre en la interfaz.
+- **Línea 35-40** `Validación de la Respuesta`:
+    - Verifica que la respuesta sea exitosa (`2xx`) y que el cuerpo de la respuesta no sea nulo.
+    - `String imageUrl = responseEntity.getBody().getData();`: Extrae la URL de la imagen generada.
+    - `imageDisplay.setSrc(imageUrl);`: Establece la URL de la imagen en el componente imageDisplay, lo que hace que la imagen se cargue y muestre en la interfaz.
     - Si la solicitud falla, se muestra una notificación de error al usuario.
 
-- **Línea 21** `add(descriptionInput, generateButton, imageDisplay);`: Añade los componentes (`descriptionInput`, `generateButton`, y `imageDisplay`) a la vista para que se muestren en la interfaz.
+- **Línea 43** `add(descriptionInput, generateButton, imageDisplay);`: Añade los componentes (`descriptionInput`, `generateButton`, y `imageDisplay`) a la vista para que se muestren en la interfaz.
 
 ## **Resumen**
 
