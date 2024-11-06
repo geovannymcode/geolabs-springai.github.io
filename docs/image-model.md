@@ -61,75 +61,7 @@ public class ImageController {
 - **Línea 21** `String url = imageResponse.getResult().getOutput().getUrl();`: Extrae la URL de la imagen generada de la respuesta.
 - **Línea 23** `return ResponseEntity.ok(new ResponseDTO<>(200, "success", url));`: Devuelve una respuesta con estado HTTP 200 y un ResponseDTO que contiene la URL de la imagen generada.
 
-## **Paso 2: Controlador MultiModalityController**
-
-Este controlador permite realizar análisis multimodal. El usuario carga una imagen, el modelo describe su contenido, y luego se genera una caricatura basada en esa descripción.
-
-```java title="MultiModalityController.java" linenums="1"
-@RestController
-@RequestMapping("/multis")
-@RequiredArgsConstructor
-public class MultiModalityController {
-
-    private final OpenAiChatModel openAiChatModel;
-    private final OpenAiImageModel openAiImageModel;
-
-    @GetMapping("/upload")
-    public String multiModalityUpload(@RequestParam("image") MultipartFile imageFile) throws Exception{
-        UserMessage userMessage = new UserMessage(
-                "Explicame que ves en esta imagen?",
-                List.of(new Media(MimeTypeUtils.IMAGE_JPEG, new ByteArrayResource(imageFile.getBytes())))
-        );
-
-        ChatResponse response = openAiChatModel.call(new Prompt(List.of(userMessage)));
-        String description = response.getResult().getOutput().getContent();
-
-        String url = openAiImageModel.call(new ImagePrompt("Generame una caricatura de esta descripcion: " + description,
-                OpenAiImageOptions.builder()
-                        .withModel("dall-e-3")
-                        .withQuality("standard")
-                        .withN(1)
-                        .withHeight(1024)
-                        .withWidth(1024)
-                        .build()
-        )).getResult().getOutput().getUrl();
-
-        return url;
-    }
-}
-```
-
-- **Línea 1** `@RestController`: Define el controlador como un manejador de solicitudes HTTP en formato JSON.
-
-- **Línea 2** `@RequestMapping("/multis")`: Define la ruta base del controlador como /multis.
-
-- **Línea 3** `@RequiredArgsConstructor`: Genera un constructor que inyecta OpenAiChatModel y OpenAiImageModel.
-
-- **Línea 9** `@GetMapping("/upload")`: Define el endpoint /multis/upload, que responderá a solicitudes GET para procesar imágenes.
-
-- **Línea 10** `public String multiModalityUpload(@RequestParam("image") MultipartFile imageFile) throws Exception`: Método que toma una imagen como entrada y devuelve la URL de la caricatura generada.
-
-- **Línea 11** `new UserMessage(...)`: Crea un mensaje de usuario pidiendo al modelo que describa el contenido de la imagen cargada.
-
-- **Línea 13** 
-     - `List.of(new Media(...))`: Adjunta la imagen cargada como un recurso (Media) en formato JPEG.
-     - `new ByteArrayResource(imageFile.getBytes())`: Convierte el archivo de imagen en un recurso de bytes para enviarlo al modelo.
-
-- **Línea 16** `openAiChatModel.call(...)`: Llama al modelo de chat para procesar el mensaje del usuario y obtener una descripción de la imagen.
-
-- **Línea 17** `String description = response.getResult().getOutput().getContent();`: Extrae la descripción generada por el modelo a partir de la imagen cargada.
-
-- **Línea 19** 
-     - `openAiImageModel.call(...)`: Llama nuevamente al modelo de generación de imágenes para crear una caricatura basada en la descripción obtenida.
-     - `new ImagePrompt("Generame una caricatura de esta descripcion: " + description, ...)`: Crea un ImagePrompt con la descripción generada en el paso anterior.
-
-- **Líneas 21-25** `withModel("dall-e-3"), withQuality("standard"), withN(1), withHeight(1024), withWidth(1024)`: Configura las opciones para la generación de la caricatura, similar al controlador anterior.
-
-- **Línea 27** `getResult().getOutput().getUrl()`: Obtiene la URL de la caricatura generada.
-
-- **Línea 29** `return url;`: Devuelve la URL de la caricatura generada como respuesta.
-
-## **Paso 3: Integración en Vaadin `MultiModality`**
+## **Paso 2: Integración en Vaadin `Image Model`**
 
 Este formulario como se puede observar en la **figura #1** es de generación de imágenes, por lo cual permite al usuario ingresar una descripción en texto y, al hacer clic en "Generate Image", se envía una solicitud al backend. El backend procesa esta solicitud con DALL-E y devuelve una URL de la imagen generada, que se muestra automáticamente en el contenedor de la interfaz.
 
@@ -137,7 +69,7 @@ Este formulario como se puede observar en la **figura #1** es de generación de 
 
 **Figura #1: Formulario de Generación de Image**
 
-### **Paso 3.1: Creación de Formulario en Vaadin**
+### **Paso 2.1: Creación de Formulario en Vaadin**
 
 ```java title="ImageGeneratorView.java" linenums="1"
 @Route("image-generator")
@@ -203,7 +135,7 @@ public class ImageGeneratorView extends VerticalLayout {
 
 - **Línea 13** `descriptionInput.setWidth("400px")`: Establece el ancho del campo de texto en 400 píxeles para mejorar la experiencia visual del usuario.
 
-- **Línea 16 ds** `Button generateButton`: Botón que, al hacer clic, iniciará el proceso de generación de la imagen llamando al backend.
+- **Línea 16** `Button generateButton`: Botón que, al hacer clic, iniciará el proceso de generación de la imagen llamando al backend.
 
 - **Línea 19** `Image imageDisplay`: Componente de Vaadin para mostrar la imagen generada.
 - **Líneas 20-21** `imageDisplay.setWidth("400px") y imageDisplay.setHeight("400px")`: Configura el tamaño del contenedor de la imagen en 400x400 píxeles para que la imagen generada se ajuste visualmente al espacio asignado.
@@ -226,10 +158,6 @@ public class ImageGeneratorView extends VerticalLayout {
 
 ## **Resumen**
 
-Estos dos controladores permiten:
-
 - **ImageController**: Generar imágenes basadas en descripciones textuales, lo que resulta útil para crear contenido visual personalizado a partir de texto. Utilizando DALL-E, el controlador convierte cualquier descripción en una imagen de alta calidad que se puede mostrar en la interfaz de usuario.
-
-- **MultiModalityController**: Procesar imágenes y generar una respuesta descriptiva, además de producir una caricatura basada en esa descripción, demostrando el potencial de la IA multimodal para tareas de generación de imágenes y análisis visual. Este controlador combina la capacidad de reconocimiento visual del modelo de chat con la generación de contenido visual de DALL-E, proporcionando una experiencia completa de análisis e interacción con imágenes.
 
 La **integración de Vaadin como interfaz de frontend** permite a los usuarios interactuar de forma sencilla y visual con estas funcionalidades de IA. Con Vaadin, se crean formularios dinámicos para ingresar descripciones de imágenes y cargar imágenes, lo que mejora la experiencia de usuario al permitir la visualización instantánea de los resultados generados por DALL-E. Esta combinación entre **DALL-E, el modelo de chat de OpenAI, Spring AI y Vaadin** demuestra cómo se pueden utilizar modelos avanzados de IA en aplicaciones interactivas y visuales, integrando tanto procesamiento de texto como de imagen para crear aplicaciones enriquecidas y centradas en el usuario.

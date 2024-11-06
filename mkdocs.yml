@@ -18,6 +18,7 @@ nav:
   - Chat Model: chat-model.md
   - Function Calling: chat-model-calling.md
   - Image Model: image-model.md
+  - Multi Modality: multimodality.md
   - Text To Speech Model: tts-model.md
 
 
