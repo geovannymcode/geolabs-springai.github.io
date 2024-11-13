@@ -1,0 +1,1799 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GeoLabs SpringAI Docs">
+      
+      
+        <meta name="author" content="Geovanny Mendoza">
+      
+      
+        <link rel="canonical" href="https://geovannymcode.github.io/geolabs-springai.github.io/chat-model/">
+      
+      
+        <link rel="prev" href="../configuracion-entorno/">
+      
+      
+        <link rel="next" href="../chat-model-calling/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Chat Model - GeoLabs SpringAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chat-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GeoLabs SpringAI" class="md-header__button md-logo" aria-label="GeoLabs SpringAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoLabs SpringAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chat Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://geovannymcode.github.io/geolabs-springai.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-springai.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GeoLabs SpringAI" class="md-nav__button md-logo" aria-label="GeoLabs SpringAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoLabs SpringAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://geovannymcode.github.io/geolabs-springai.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-springai.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuracion-entorno/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuración de Entorno
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chat Model
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chat Model
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-configuracion-de-la-clave-api-de-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración de la Clave API de OpenAI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-clase-de-configuracion-openaiconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Clase de Configuración OpenAIConfig
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-clase-responsedto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Clase ResponseDTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3: Clase ResponseDTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anotaciones-y-propiedades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anotaciones y Propiedades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propiedades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4controlador-chatcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4:Controlador ChatController
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 4:Controlador ChatController">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-en-el-chatcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos en el ChatController
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5clase-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5:Clase ChatHistory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 5:Clase ChatHistory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de ChatHistory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-en-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos en ChatHistory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-uso-en-el-segundo-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de Uso en el Segundo Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-prueba-del-endpoint-con-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6: Prueba del Endpoint con Postman
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usamos-vaadin-en-el-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por Qué Usamos Vaadin en el Proyecto?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-clase-mainlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7: Clase MainLayout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-8-adicionar-el-formulario-basiccallview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 8: Adicionar el Formulario BasicCallView
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 8: Adicionar el Formulario BasicCallView">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-del-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes del Formulario
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-los-componentes-de-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de los Componentes de la Interfaz
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-area-de-mensajes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del Área de Mensajes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-layout-de-los-botones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del Layout de los Botones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boton-send" class="md-nav__link">
+    <span class="md-ellipsis">
+      Botón "Send"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boton-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Botón "Clear"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chat-model-calling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multimodality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi Modality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tts-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text To Speech Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-configuracion-de-la-clave-api-de-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración de la Clave API de OpenAI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-clase-de-configuracion-openaiconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Clase de Configuración OpenAIConfig
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-clase-responsedto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Clase ResponseDTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3: Clase ResponseDTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anotaciones-y-propiedades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anotaciones y Propiedades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propiedades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4controlador-chatcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4:Controlador ChatController
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 4:Controlador ChatController">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-en-el-chatcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos en el ChatController
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5clase-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5:Clase ChatHistory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 5:Clase ChatHistory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de ChatHistory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-en-chathistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos en ChatHistory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-uso-en-el-segundo-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de Uso en el Segundo Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-prueba-del-endpoint-con-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6: Prueba del Endpoint con Postman
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usamos-vaadin-en-el-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por Qué Usamos Vaadin en el Proyecto?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-clase-mainlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7: Clase MainLayout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-8-adicionar-el-formulario-basiccallview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 8: Adicionar el Formulario BasicCallView
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 8: Adicionar el Formulario BasicCallView">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-del-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes del Formulario
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-los-componentes-de-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de los Componentes de la Interfaz
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-area-de-mensajes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del Área de Mensajes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-layout-de-los-botones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del Layout de los Botones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boton-send" class="md-nav__link">
+    <span class="md-ellipsis">
+      Botón "Send"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boton-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Botón "Clear"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="chat-model"><strong>Chat Model</strong></h1>
+<h2 id="paso-1-configuracion-de-la-clave-api-de-openai"><strong>Paso 1: Configuración de la Clave API de OpenAI</strong></h2>
+<p>Para que nuestra aplicación pueda acceder a los modelos de OpenAI, necesitamos una clave API válida de OpenAI. Esta clave permite autenticar las solicitudes y garantiza que la aplicación tenga permiso para utilizar los modelos de lenguaje. Asegúrate de tener una cuenta en OpenAI y de obtener una clave API desde su sitio web.</p>
+<p>Una vez tengas la clave, debes configurarla en el archivo <code>application.yml</code> para que esté disponible en el proyecto. La configuración debería verse así:</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Application.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">spring</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="nt">ai</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nt">openai</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">      </span><span class="nt">api-key</span><span class="p">:</span><span class="w"> </span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">SPRING_AI_OPENAI_API_KEY`</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Nota</strong>: Reemplaza <code>SPRING_AI_OPENAI_API_KEY</code> con tu clave API real de OpenAI.</li>
+</ul>
+<p>Esta configuración permitirá que nuestra aplicación Spring Boot acceda a la clave a través de la anotación <code>@Value</code> en la clase de configuración <code>OpenAIConfig</code>.</p>
+<h2 id="paso-2-clase-de-configuracion-openaiconfig"><strong>Paso 2: Clase de Configuración <code>OpenAIConfig</code></strong></h2>
+<p>Para crear una instancia de <strong>OpenAiChatModel</strong> (la clase que interactúa con los modelos de OpenAI), necesitamos una clase de configuración que inyecte la clave API y configure los parámetros básicos para las solicitudes de generación de texto. Esta clase es <code>OpenAIConfig</code>.</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">OpenAIConfig.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@Configuration</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OpenAIConfig</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${spring.ai.openai.api-key}&quot;</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">API_KEY</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="nd">@Bean</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">OpenAiChatModel</span><span class="w"> </span><span class="nf">openAiChatModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">OpenAiApi</span><span class="w"> </span><span class="n">openAiApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OpenAiApi</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OpenAiChatModel</span><span class="p">(</span><span class="n">openAiApi</span><span class="p">,</span><span class="w"> </span><span class="n">OpenAiChatOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">                </span><span class="p">.</span><span class="na">withModel</span><span class="p">(</span><span class="s">&quot;gpt-3.5-turbo&quot;</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">                </span><span class="p">.</span><span class="na">withTemperature</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">                </span><span class="p">.</span><span class="na">withMaxTokens</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">()</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="p">);</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Línea 1</strong>: <code>@Configuration</code> Anota la clase para que Spring la reconozca como una clase de configuración. Esto significa que Spring gestionará los beans definidos dentro de esta clase.</p>
+</li>
+<li>
+<p><strong>Línea 4</strong>: <code>@Value("${spring.ai.openai.api-key}")</code> Inyecta el valor de la clave API de OpenAI desde el archivo application.yml. Esta clave es necesaria para autenticar las solicitudes al servicio de OpenAI.</p>
+</li>
+<li>
+<p><strong>Línea 8</strong>: <code>Método openAiChatModel()</code> Este método define un bean de tipo <code>OpenAiChatModel</code>, que es el cliente que utilizaremos para enviar solicitudes a OpenAI.</p>
+</li>
+<li>
+<p><strong>Línea 9</strong>: <code>OpenAiApi</code> Se inicializa con la clave API, permitiendo la comunicación segura con OpenAI.</p>
+</li>
+<li><strong>Línea 11</strong>: <code>OpenAiChatModel</code> Esta instancia se configura con <code>OpenAiChatOptions</code> para definir parámetros específicos como:</li>
+<li><strong>Línea 12</strong>: <code>withModel("gpt-3.5-turbo")</code> Especifica el modelo que utilizaremos, en este caso, gpt-3.5-turbo.</li>
+<li><strong>Línea 13</strong>: <code>withTemperature(0.8)</code> Controla la creatividad de las respuestas generadas. Valores más bajos hacen las respuestas más conservadoras, mientras que valores más altos (hasta 1) hacen las respuestas más creativas.</li>
+<li><strong>Línea 14</strong>: <code>withMaxTokens(200)</code> Define el límite de tokens (unidades de texto) en la respuesta. Esto evita que las respuestas sean demasiado largas y controla el costo de las solicitudes.</li>
+<li><strong>Línea 15</strong>: <code>build()</code>: Este método se utiliza para finalizar la construcción de OpenAiChatOptions y devuelve una instancia configurada de estas opciones. Sin build(), la configuración del cliente quedaría incompleta y lanzaría un error.</li>
+</ul>
+<p>Este bean estará disponible para ser inyectado en otras clases, como el controlador <code>ChatController</code>, permitiéndonos realizar llamadas a la API de OpenAI.</p>
+<h2 id="paso-3-clase-responsedto"><strong>Paso 3: Clase <code>ResponseDTO</code></strong></h2>
+<p>La clase <code>ResponseDTO</code> es un <strong>Data Transfer Object (DTO)</strong> que permite estructurar las respuestas enviadas desde los endpoints en el controlador. Este patrón es útil para mantener consistencia en las respuestas, asegurando que cada respuesta contenga un estado, un mensaje y los datos específicos.</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">ChatController.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@AllArgsConstructor</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nd">@NoArgsConstructor</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nd">@Getter</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nd">@Setter</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ResponseDTO</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="anotaciones-y-propiedades"><strong>Anotaciones y Propiedades</strong></h3>
+<ul>
+<li>
+<p><code>@AllArgsConstructor</code>: Genera un constructor que acepta valores para todos los atributos (<code>status</code>, <code>message</code>, y <code>data</code>), lo cual facilita la creación de instancias con todos los campos inicializados.</p>
+</li>
+<li>
+<p><code>@NoArgsConstructor</code>: Genera un constructor sin argumentos, permitiendo la creación de instancias vacías de <code>ResponseDTO</code>.</p>
+</li>
+<li>
+<p><code>@Getter</code> y <code>@Setter</code>: Estas anotaciones de Lombok generan automáticamente los métodos <code>get</code> y <code>set</code> para cada propiedad, simplificando el acceso y modificación de los atributos sin necesidad de escribirlos manualmente.</p>
+</li>
+</ul>
+<h3 id="propiedades"><strong>Propiedades</strong></h3>
+<ul>
+<li>
+<p><code>status</code> (<code>int</code>): Representa el código de estado de la respuesta (por ejemplo, <code>200</code> para éxito, <code>400</code> para errores de cliente, etc.). Esto facilita la interpretación del estado de la solicitud en el cliente.</p>
+</li>
+<li>
+<p><code>message</code> (<code>String</code>): Proporciona un mensaje descriptivo sobre el resultado de la solicitud. Este mensaje puede ser "success", "error", u otra descripción, y ayuda al cliente a entender mejor el contexto de la respuesta.</p>
+</li>
+<li>
+<p><code>data</code> (<code>T</code>): Representa los datos específicos devueltos por el endpoint. Esta es una propiedad genérica (<code>&lt;T&gt;</code>), lo que significa que puede contener cualquier tipo de objeto. Esto permite que <code>ResponseDTO</code> sea reutilizable en distintos endpoints, adaptándose a las necesidades de cada uno.</p>
+</li>
+</ul>
+<h2 id="paso-4controlador-chatcontroller"><strong>Paso 4:Controlador <code>ChatController</code></strong></h2>
+<p>El controlador <code>ChatController</code> expone dos endpoints para interactuar con la IA de OpenAI. A través de estos endpoints, los usuarios pueden enviar mensajes y obtener respuestas generadas por el modelo de IA. Este controlador permite:</p>
+<ul>
+<li>Generación de texto simple en base a un mensaje.</li>
+<li>Generación de conversaciones manteniendo un historial de mensajes, para que el modelo pueda tener contexto en las respuestas.</li>
+</ul>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">ChatController.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nd">@RestController</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/chats&quot;</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nd">@CrossOrigin</span><span class="p">(</span><span class="n">origins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="nd">@RequiredArgsConstructor</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ChatController</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">OpenAiChatModel</span><span class="w"> </span><span class="n">openAiChatModel</span><span class="p">;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ChatHistory</span><span class="w"> </span><span class="n">chatHistory</span><span class="p">;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/generate&quot;</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ResponseDTO</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">generateText</span><span class="p">(</span><span class="nd">@RequestParam</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">        </span><span class="n">ChatResponse</span><span class="w"> </span><span class="n">chatResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">openAiChatModel</span><span class="p">.</span><span class="na">call</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Prompt</span><span class="p">(</span><span class="n">message</span><span class="p">));</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chatResponse</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getOutput</span><span class="p">().</span><span class="na">getContent</span><span class="p">();</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ResponseDTO</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;success&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">));</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/generateConversation&quot;</span><span class="p">)</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ResponseDTO</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">generateConversation</span><span class="p">(</span><span class="nd">@RequestParam</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">){</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="w">        </span><span class="n">chatHistory</span><span class="p">.</span><span class="na">addMessage</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserMessage</span><span class="p">(</span><span class="n">message</span><span class="p">));</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="n">ChatResponse</span><span class="w"> </span><span class="n">chatResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">openAiChatModel</span><span class="p">.</span><span class="na">call</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Prompt</span><span class="p">(</span><span class="n">chatHistory</span><span class="p">.</span><span class="na">getAll</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)));</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chatResponse</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getOutput</span><span class="p">().</span><span class="na">getContent</span><span class="p">();</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24"></a>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ResponseDTO</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;success&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">));</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Línea 1</strong>: <code>@RestController</code> Indica que esta clase es un controlador REST. Spring gestionará automáticamente las solicitudes HTTP y las respuestas en formato JSON.</p>
+</li>
+<li>
+<p><strong>Línea 2</strong>: <code>@RequestMapping("/chats")</code> Define el prefijo de la URL para todos los endpoints de este controlador (<code>/chats</code>).</p>
+</li>
+<li>
+<p><strong>Línea 3</strong>: <code>@CrossOrigin(origins = "*")</code> Permite solicitudes CORS desde cualquier origen, lo cual es útil para desarrollo. En producción, puedes restringirlo a un dominio específico.</p>
+</li>
+<li>
+<p><strong>Línea 4</strong>: <code>@RequiredArgsConstructor</code> Genera un constructor para inyectar los componentes <code>openAiChatModel</code> y <code>chatHistory</code> (gestión del historial de la conversación), facilitando la inyección de dependencias.</p>
+</li>
+</ul>
+<h3 id="metodos-en-el-chatcontroller"><strong>Métodos en el <code>ChatController</code></strong></h3>
+<ol>
+<li>
+<p><strong>Línea 10</strong>: <code>generateText (@GetMapping("/generate"))</code></p>
+<ul>
+<li><strong>Objetivo</strong>: Generar una respuesta de texto simple en base a un mensaje proporcionado por el usuario.</li>
+<li><strong>Parámetro</strong>: <code>message</code>, que contiene el texto enviado por el usuario.</li>
+<li><strong>Lógica</strong>:<ul>
+<li>Crea una instancia de <code>Prompt</code> con el mensaje del usuario.</li>
+<li>Llama al método <code>call</code> de <code>openAiChatModel</code>, que envía el <code>Prompt</code> a OpenAI.</li>
+<li>Obtiene la respuesta generada por el modelo (<code>chatResponse</code>) y extrae el contenido de texto (<code>result</code>).</li>
+</ul>
+</li>
+<li><strong>Respuesta</strong>: Devuelve un <code>ResponseDTO</code> con el estado y el texto generado.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 18</strong>: <code>generateConversation (@GetMapping("/generateConversation"))</code></p>
+<ul>
+<li><strong>Objetivo</strong>: Generar una respuesta basada en una conversación con contexto.</li>
+<li><strong>Parámetro</strong>: message, que representa el mensaje actual del usuario.</li>
+<li><strong>Lógica</strong>:<ul>
+<li>Agrega el mensaje al historial de conversación (chatHistory) usando un identificador de conversación (<code>"1"</code>).</li>
+<li>Envía todo el historial de mensajes al modelo, en lugar de solo el mensaje actual. Esto permite que el modelo de IA genere respuestas considerando el contexto.</li>
+<li>Obtiene y devuelve la respuesta generada, al igual que en el método generateText.</li>
+</ul>
+</li>
+<li><strong>Respuesta</strong>: Devuelve un <code>ResponseDTO</code> con el estado y la respuesta generada por el modelo de IA.</li>
+</ul>
+</li>
+</ol>
+<h2 id="paso-5clase-chathistory"><strong>Paso 5:Clase <code>ChatHistory</code></strong></h2>
+<p>La clase <code>ChatHistory</code> es un componente de Spring (<code>@Component</code>) que almacena el historial de mensajes para cada conversación y permite realizar un seguimiento de los mensajes agregados. Esto permite que el modelo de IA tenga contexto en las respuestas, lo cual es útil para conversaciones continuas en las que cada mensaje depende de los anteriores.</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">ChatController.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span>
+<span class="normal"><a href="#__codelineno-4-53">53</a></span>
+<span class="normal"><a href="#__codelineno-4-54">54</a></span>
+<span class="normal"><a href="#__codelineno-4-55">55</a></span>
+<span class="normal"><a href="#__codelineno-4-56">56</a></span>
+<span class="normal"><a href="#__codelineno-4-57">57</a></span>
+<span class="normal"><a href="#__codelineno-4-58">58</a></span>
+<span class="normal"><a href="#__codelineno-4-59">59</a></span>
+<span class="normal"><a href="#__codelineno-4-60">60</a></span>
+<span class="normal"><a href="#__codelineno-4-61">61</a></span>
+<span class="normal"><a href="#__codelineno-4-62">62</a></span>
+<span class="normal"><a href="#__codelineno-4-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nd">@Component</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ChatHistory</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">ChatHistory</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">chatHistoryLog</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">messageAggregations</span><span class="p">;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ChatHistory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">chatHistoryLog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">messageAggregations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">groupId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toGroupId</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">messageAggregations</span><span class="p">.</span><span class="na">computeIfAbsent</span><span class="p">(</span><span class="n">groupId</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">()).</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">messageAggregations</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">&quot;Multiple active sessions: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">messageAggregations</span><span class="p">.</span><span class="na">keySet</span><span class="p">());</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">finishReason</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;finishReason&quot;</span><span class="p">);</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;STOP&quot;</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">finishReason</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getMessageType</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MessageType</span><span class="p">.</span><span class="na">USER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">finalizeMessageGroup</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">groupId</span><span class="p">);</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toGroupId</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">messageId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">);</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">chatId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">messageId</span><span class="p">;</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33"></a>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getProperty</span><span class="p">(</span><span class="n">Message</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getMetadata</span><span class="p">().</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">).</span><span class="na">toString</span><span class="p">();</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37"></a>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">finalizeMessageGroup</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">groupId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sessionMessages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">messageAggregations</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">groupId</span><span class="p">);</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40"></a>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionMessages</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionMessages</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="na">commitToHistoryLog</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">sessionMessages</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="w">                </span><span class="n">String</span><span class="w"> </span><span class="n">aggregatedContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sessionMessages</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46"></a><span class="w">                        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Message</span><span class="p">::</span><span class="n">getContent</span><span class="p">)</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47"></a><span class="w">                        </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">Objects</span><span class="p">::</span><span class="n">nonNull</span><span class="p">)</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48"></a><span class="w">                        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">joining</span><span class="p">());</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49"></a><span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="na">commitToHistoryLog</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AssistantMessage</span><span class="p">(</span><span class="n">aggregatedContent</span><span class="p">));</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52"></a><span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">&quot;No active session for groupId: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groupId</span><span class="p">);</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55"></a>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">commitToHistoryLog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">chatHistoryLog</span><span class="p">.</span><span class="na">computeIfAbsent</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">()).</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59"></a>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getAll</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">chatId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">chatHistoryLog</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">chatId</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">());</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="componentes-de-chathistory"><strong>Componentes de <code>ChatHistory</code></strong></h3>
+<ul>
+<li>
+<p><strong>Línea 1</strong>: <code>@Component</code> Indica que esta clase es un componente de Spring, lo que permite que Spring la gestione como un bean y la inyecte en otras clases.</p>
+</li>
+<li>
+<p><strong>Línea 4</strong>: Logger: Se utiliza Logger para registrar advertencias, especialmente si se detectan múltiples sesiones activas o si no hay una sesión activa para un grupo de mensajes específico.</p>
+</li>
+<li>
+<p><strong>Estructuras de Datos</strong>:</p>
+<ul>
+<li><strong>Línea 6</strong>: <code>chatHistoryLog (Map&lt;String, List&lt;Message&gt;&gt;)</code> Este mapa almacena el historial completo de cada conversación, agrupado por chatId. Cada chatId tiene una lista de mensajes que representa toda la conversación.</li>
+<li><strong>Línea 7</strong>: <code>messageAggregations (Map&lt;String, List&lt;Message&gt;&gt;)</code> Almacena mensajes agrupados temporalmente por sesión antes de que se finalicen y se registren en chatHistoryLog. Esta estructura permite manejar múltiples mensajes en una sesión, útil para conversaciones donde la IA responde en varias partes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="metodos-en-chathistory"><strong>Métodos en ChatHistory</strong></h3>
+<ul>
+<li>
+<p><strong>Línea 14</strong> addMessage(String chatId, Message message)</p>
+<ul>
+<li><strong>Propósito</strong>: Agrega un mensaje a la sesión actual o crea una nueva si es necesario.</li>
+<li><strong>Parámetros</strong>:<ul>
+<li><strong>chatId</strong>: Identificador de la conversación.</li>
+<li><strong>message</strong>: El mensaje que se quiere agregar.</li>
+</ul>
+</li>
+<li><strong>Lógica</strong>:<ul>
+<li>Genera un <code>groupId</code> único para la sesión actual usando <code>chatId</code> y <code>message</code>.</li>
+<li>Agrega el mensaje a messageAggregations, y si hay varias sesiones activas, registra una advertencia.</li>
+<li>Verifica si el mensaje indica el fin de una conversación (finishReason == "STOP") o si es un mensaje de usuario. Si es así, llama a finalizeMessageGroup para guardar el mensaje en el historial permanente (chatHistoryLog).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 29</strong> toGroupId(String chatId, Message message):</p>
+<ul>
+<li><strong>Propósito</strong>:Crea un identificador único (groupId) para la sesión, combinando chatId y messageId.</li>
+<li><strong>Uso</strong>: Asegura que cada sesión tenga un identificador único basado en la conversación y el mensaje.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 34</strong> getProperty(Message message, String key):</p>
+<ul>
+<li><strong>Propósito</strong>: Recupera el valor de una propiedad específica de message, como finishReason o id.</li>
+<li><strong>Uso</strong>: Facilita el acceso a propiedades en el metadata del mensaje.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 38</strong> finalizeMessageGroup(String chatId, String groupId):</p>
+<ul>
+<li><strong>Propósito</strong>: Mueve los mensajes agrupados temporalmente desde messageAggregations al historial permanente en chatHistoryLog.</li>
+<li><strong>Lógica</strong>:
+        - Elimina el grupo de mensajes de messageAggregations.
+        - Si solo hay un mensaje en el grupo, lo guarda directamente en el historial. Si hay varios, combina sus contenidos y luego lo guarda.
+        - Si no hay mensajes en el grupo, registra una advertencia de sesión inactiva.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 56</strong> commitToHistoryLog(String chatId, Message message):</p>
+<ul>
+<li><strong>Propósito</strong>: Agrega un mensaje al historial permanente chatHistoryLog.</li>
+<li><strong>Uso</strong>: Llama a este método cuando una sesión se ha finalizado, para registrar el contenido en el historial de conversación.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 60</strong> getAll(String chatId):</p>
+<ul>
+<li><strong>Propósito</strong>: Devuelve el historial completo de mensajes para un chatId específico.</li>
+<li><strong>Uso</strong>: Se utiliza en el controlador para recuperar el historial de una conversación completa y enviarlo al modelo de IA para proporcionar contexto en las respuestas.</li>
+</ul>
+</li>
+</ul>
+<h3 id="ejemplo-de-uso-en-el-segundo-endpoint"><strong>Ejemplo de Uso en el Segundo Endpoint</strong></h3>
+<p>En el endpoint <code>generateConversation</code> del <code>ChatController</code>, <code>ChatHistory</code> permite mantener un contexto de conversación. Cada mensaje del usuario se agrega a <code>ChatHistory</code>, y luego se obtiene el historial completo de la conversación antes de enviarlo al modelo de IA. Esto permite que la IA genere una respuesta considerando toda la conversación hasta el momento.</p>
+<h2 id="paso-6-prueba-del-endpoint-con-postman"><strong>Paso 6: Prueba del Endpoint con Postman</strong></h2>
+<p>Para asegurarnos de que el endpoint de conversación funcione correctamente, utilizamos Postman para realizar una prueba. La <strong>Figura #1</strong> muestra cómo se realizó la prueba para el endpoint <code>/chats/generateConversation</code>.</p>
+<p><img alt="GeoLabs SpringAI" src="../files/SpringAI-02.png" title="GeoLabs SpringAI" /></p>
+<p><strong>Figura #1: Prueba del Endpoint</strong> <code>/chats/generateConversation</code> <strong>con Postman</strong></p>
+<p><strong>Descripción</strong>: En la Figura #1, se observa cómo se configuró y envió la solicitud en Postman:</p>
+<ol>
+<li>
+<p><strong>Método y URL</strong>:</p>
+<ul>
+<li>
+<p>Se seleccionó el método <strong>GET</strong> y se ingresó la URL:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>http://localhost:8080/chats/generateConversation?message<span class="o">=</span>Donde<span class="w"> </span>queda<span class="w"> </span>Guatemala?
+</span></code></pre></div>
+</li>
+<li>
+<p>Aquí, el parámetro de consulta message se establece con el valor "Donde queda Guatemala?".</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Parámetro de Consulta</strong>:</p>
+<ul>
+<li>En la sección <strong>Params</strong> de Postman, se agregó el parámetro de consulta <code>message</code> con el valor deseado, lo cual será procesado por el modelo de IA para generar una respuesta contextualizada.</li>
+</ul>
+</li>
+<li>
+<p><strong>Respuesta del Servidor</strong>:</p>
+<ul>
+<li>
+<p>En la parte inferior de la imagen, se muestra la respuesta recibida:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Guatemala se encuentra en América Central. </span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s2">    Limita al norte y al oeste con México, al este con Belice, </span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s2">    al sureste con Honduras y al sur con El Salvador. </span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s2">    Además, tiene costas tanto en el Océano Pacífico al suroeste </span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s2">    como en el Mar Caribe al este. </span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s2">    La ciudad capital de Guatemala es Ciudad de Guatemala.&quot;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Esta respuesta incluye</strong>:</p>
+<ul>
+<li><code>status</code>: Indica el estado de la solicitud, con <code>200</code> para confirmar que fue exitosa.</li>
+<li><code>message</code>: Un mensaje de éxito (<code>"success"</code>).</li>
+<li><code>data</code>: Contiene la respuesta generada por la IA, con información sobre Guatemala.</li>
+</ul>
+</li>
+</ol>
+<h2 id="por-que-usamos-vaadin-en-el-proyecto"><strong>¿Por Qué Usamos Vaadin en el Proyecto?</strong></h2>
+<p><strong>Vaadin</strong> es un framework de Java que permite construir interfaces de usuario en el frontend directamente en Java, sin necesidad de escribir código en HTML, CSS o JavaScript. Es especialmente útil para aplicaciones empresariales porque:</p>
+<ol>
+<li><strong>Facilidad de Desarrollo</strong>: Vaadin permite a los desarrolladores trabajar en el frontend y el backend en Java, simplificando la integración entre ambos.</li>
+<li><strong>Componentes UI Listos para Usar</strong>: Ofrece una amplia gama de componentes de interfaz de usuario que pueden ser personalizados, lo que facilita la creación de una UI rica y responsiva.</li>
+<li><strong>Sin Necesidad de JavaScript</strong>: Permite crear aplicaciones web modernas sin tener que escribir JavaScript, ya que todo se maneja desde el backend en Java.</li>
+<li><strong>Integración Directa con Spring Boot</strong>: Vaadin se integra de manera fluida con Spring Boot, lo que hace que la construcción de aplicaciones Java completas sea más eficiente y menos compleja.</li>
+</ol>
+<p>En nuestro caso, Vaadin nos permite crear una interfaz interactiva para enviar mensajes al modelo de IA y mostrar respuestas, sin necesidad de manejar un frontend independiente.</p>
+<h2 id="paso-7-clase-mainlayout"><strong>Paso 7: Clase <code>MainLayout</code></strong></h2>
+<p>La clase <code>MainLayout</code> extiende <code>AppLayout</code>, una clase base en Vaadin que proporciona la estructura para layouts de aplicaciones con una barra de navegación superior y un menú lateral. Este layout permite que todas las vistas de nuestra aplicación compartan la misma estructura.</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">MainLayout.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nd">@Layout</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainLayout</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">AppLayout</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MainLayout</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HorizontalLayout</span><span class="p">();</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="n">head</span><span class="p">.</span><span class="na">setDefaultVerticalComponentAlignment</span><span class="p">(</span><span class="n">FlexComponent</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="n">head</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DrawerToggle</span><span class="p">());</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="n">head</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">H2</span><span class="p">(</span><span class="s">&quot;Spring AI&quot;</span><span class="p">){{</span><span class="n">addClassNames</span><span class="p">(</span><span class="n">LumoUtility</span><span class="p">.</span><span class="na">FontSize</span><span class="p">.</span><span class="na">LARGE</span><span class="p">);}});</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">        </span><span class="n">addToNavbar</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">sideBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerticalLayout</span><span class="p">();</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">        </span><span class="n">MenuConfiguration</span><span class="p">.</span><span class="na">getMenuEntries</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">menuEntry</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">            </span><span class="n">sideBar</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">RouterLink</span><span class="p">(</span><span class="n">menuEntry</span><span class="p">.</span><span class="na">title</span><span class="p">(),</span><span class="w"> </span><span class="n">menuEntry</span><span class="p">.</span><span class="na">menuClass</span><span class="p">()));</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">        </span><span class="n">addToDrawer</span><span class="p">(</span><span class="n">sideBar</span><span class="p">);</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Línea 1</strong> <code>@Layout</code>: Aunque no es una anotación estándar en Java, en este contexto parece una convención o anotación personalizada (probablemente configurada en el proyecto) que designa esta clase como el layout principal para otras vistas en Vaadin.</p>
+</li>
+<li>
+<p><strong>Línea 1</strong> <strong>Extiende</strong> <code>AppLayout</code>: <code>AppLayout</code> es la clase base de Vaadin para layouts de aplicaciones con un menú lateral y una barra de navegación superior. Al extender <code>AppLayout</code>, <code>MainLayout</code> se convierte en el layout principal de la aplicación, proporcionando un diseño común para todas las vistas.</p>
+</li>
+<li>
+<p><strong>Línea 4</strong> - <strong>Constructor</strong> <code>MainLayout()</code>:</p>
+<ul>
+<li><strong>Barra de Navegación Superior (Navbar)</strong>:<ul>
+<li>Se crea un <code>HorizontalLayout</code> llamado <code>head</code>que contiene los elementos de la barra de navegación superior.</li>
+<li><code>DrawerToggle</code>: Este componente agrega un icono de "menú hamburguesa" (tres líneas horizontales) en la barra de navegación superior. Al hacer clic en este icono, el menú lateral se abre o se cierra. Esto es especialmente útil en dispositivos móviles o pantallas pequeñas, ya que permite al usuario ocultar o mostrar el menú lateral para aprovechar mejor el espacio en pantalla.</li>
+<li><code>Título</code>: Añadimos un título con el texto "Spring AI" usando un componente <code>H2</code>. Aplicamos estilos para que el tamaño de la fuente sea grande (<code>LumoUtility.FontSize.LARGE</code>).</li>
+<li><code>addToNavbar(head)</code>: Este método añade el <code>head</code> a la barra de navegación superior.</li>
+</ul>
+</li>
+<li><strong>Menú Lateral (Sidebar)</strong>:<ul>
+<li>Se crea un <code>VerticalLayout</code> llamado <code>sideBar</code>para el menú lateral.</li>
+<li><code>Menú Dinámico</code>: Utilizamos <code>MenuConfiguration.getMenuEntries()</code> para obtener las entradas de menú configuradas en el proyecto. Para cada entrada, se crea un enlace de navegación (<code>RouterLink</code>) que redirige a la clase correspondiente.</li>
+<li><code>addToDrawer(sideBar)</code>: Este método añade el <code>sideBar</code> al drawer o menú lateral.</li>
+</ul>
+</li>
+<li><strong>Propósito del</strong> <code>MainLayout</code>:<ul>
+<li><strong>El MainLayout tiene dos objetivos principales</strong>:<ul>
+<li><code>Uniformidad</code>: Al utilizar un layout común para todas las vistas, la aplicación mantiene un diseño consistente en cada sección. Esto asegura que el usuario tenga una experiencia visual uniforme, independientemente de la vista que esté utilizando, lo cual mejora la experiencia y facilita la navegación.</li>
+<li><code>Modularidad</code>: Separar el layout principal del contenido específico de cada vista permite agregar, modificar o eliminar vistas sin afectar la estructura general de la interfaz. Esto significa que podemos cambiar el contenido de las vistas individuales sin necesidad de ajustar el diseño principal.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Ahora vamos a agregar la clase <code>HomeView</code>, que servirá como la vista principal de la aplicación. Esta vista se mostrará en la ruta raíz (<code>/</code>) de la aplicación y utilizará <code>MainLayout</code> como layout base.</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HomeView.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nd">@Route</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MainLayout</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span><span class="c1">// Ruta principal</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HomeView</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">VerticalLayout</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HomeView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">        </span><span class="n">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">H1</span><span class="p">(</span><span class="s">&quot;Welcome to Enterprise AI Jug Guatemala 2024&quot;</span><span class="p">));</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Línea 1</strong> - <code>@Route</code>:</p>
+<ul>
+<li><code>value = "":</code> Define la ruta de esta vista como la raíz de la aplicación (<code>/</code>). Esto significa que cuando los usuarios accedan a <code>http://localhost:8080</code>, se les mostrará esta vista.</li>
+<li><code>layout = MainLayout.class</code>: Especifica que <code>HomeView</code> usará <code>MainLayout</code> como su layout base. Esto asegura que la vista de inicio tenga la misma estructura de navegación y diseño que el resto de las vistas de la aplicación.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 1</strong> - <code>VerticalLayout</code>:</p>
+<ul>
+<li><code>HomeView</code> extiende <code>VerticalLayout</code>, que es un layout vertical en Vaadin. Esto organiza los componentes que contiene de manera vertical.</li>
+<li>Al extender <code>VerticalLayout</code>, <code>HomeView</code> puede añadir componentes uno debajo del otro, aprovechando la alineación vertical.</li>
+</ul>
+</li>
+<li>
+<p><strong>Líneas 3-4: Constructor de <code>HomeView</code></strong>:</p>
+<ul>
+<li><code>add(new H1("Welcome to Enterprise AI Jug Guatemala 2024"))</code>: Añade un título principal (<code>H1</code>) con el mensaje "Welcome to Enterprise AI Jug Guatemala 2024". Este mensaje se mostrará en la pantalla principal de la aplicación y sirve como bienvenida para los usuarios.</li>
+</ul>
+</li>
+</ul>
+<p><code>HomeView</code> actúa como la página de bienvenida de la aplicación. Al utilizar <code>MainLayout</code>, garantiza que la estructura de la barra de navegación superior y el menú lateral estén presentes, proporcionando una experiencia de usuario consistente desde el primer acceso. Esta vista es perfecta para dar una introducción o mensaje de bienvenida a los usuarios.</p>
+<h2 id="paso-8-adicionar-el-formulario-basiccallview"><strong>Paso 8: Adicionar el Formulario <code>BasicCallView</code></strong></h2>
+<p>El formulario en BasicCallView como se muestra en la <strong>figura #2</strong> permite al usuario enviar mensajes al backend y recibir respuestas generadas por un modelo de IA. La interfaz está diseñada para simular un chat básico donde el usuario puede ingresar una pregunta o mensaje, enviarlo, y ver la respuesta del "bot" en tiempo real.</p>
+<p><img alt="GeoLabs SpringAI" src="../files/SpringAI-03.png" title="GeoLabs SpringAI" />
+<strong>Figura #2: interfaz en acción</strong></p>
+<h3 id="componentes-del-formulario"><strong>Componentes del Formulario</strong></h3>
+<ol>
+<li>
+<p><strong>Campo de Entrada de Mensaje (TextArea)</strong>: El usuario ingresa el mensaje en el área de texto etiquetada como "Enter your message:". Esta área de texto es amplia y está diseñada para mensajes largos.</p>
+</li>
+<li>
+<p><strong>Botones de Acción</strong>:</p>
+<ul>
+<li><strong>Send</strong>: Envía el mensaje al backend cuando se hace clic. La respuesta generada por la IA se muestra en el área de mensajes justo debajo.</li>
+<li><strong>Clear</strong>: Limpia tanto el área de entrada de texto como el historial de mensajes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Área de Mensajes</strong>: Las respuestas generadas por el modelo de IA se presentan en esta sección. Cada respuesta aparece en un contenedor separado, con estilo, para diferenciarlo del área de entrada.
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">BasicCallView.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span>
+<span class="normal"><a href="#__codelineno-9-43">43</a></span>
+<span class="normal"><a href="#__codelineno-9-44">44</a></span>
+<span class="normal"><a href="#__codelineno-9-45">45</a></span>
+<span class="normal"><a href="#__codelineno-9-46">46</a></span>
+<span class="normal"><a href="#__codelineno-9-47">47</a></span>
+<span class="normal"><a href="#__codelineno-9-48">48</a></span>
+<span class="normal"><a href="#__codelineno-9-49">49</a></span>
+<span class="normal"><a href="#__codelineno-9-50">50</a></span>
+<span class="normal"><a href="#__codelineno-9-51">51</a></span>
+<span class="normal"><a href="#__codelineno-9-52">52</a></span>
+<span class="normal"><a href="#__codelineno-9-53">53</a></span>
+<span class="normal"><a href="#__codelineno-9-54">54</a></span>
+<span class="normal"><a href="#__codelineno-9-55">55</a></span>
+<span class="normal"><a href="#__codelineno-9-56">56</a></span>
+<span class="normal"><a href="#__codelineno-9-57">57</a></span>
+<span class="normal"><a href="#__codelineno-9-58">58</a></span>
+<span class="normal"><a href="#__codelineno-9-59">59</a></span>
+<span class="normal"><a href="#__codelineno-9-60">60</a></span>
+<span class="normal"><a href="#__codelineno-9-61">61</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nd">@Route</span><span class="p">(</span><span class="s">&quot;chat&quot;</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nd">@Menu</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Basic Calling&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BasicCallView</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">VerticalLayout</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">RestTemplate</span><span class="w"> </span><span class="n">restTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestTemplate</span><span class="p">();</span><span class="w">  </span><span class="c1">// Cliente para hacer solicitudes HTTP</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">backendUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/chats/generateConversation&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// URL de tu controlador</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">BasicCallView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">        </span><span class="n">setSizeFull</span><span class="p">();</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">        </span><span class="n">TextArea</span><span class="w"> </span><span class="n">messageInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TextArea</span><span class="p">(</span><span class="s">&quot;Enter your message:&quot;</span><span class="p">);</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">        </span><span class="n">messageInput</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="s">&quot;600px&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ajusta el ancho del área de texto</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">        </span><span class="n">messageInput</span><span class="p">.</span><span class="na">setHeight</span><span class="p">(</span><span class="s">&quot;150px&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ajusta la altura del área de texto</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="w">        </span><span class="n">Button</span><span class="w"> </span><span class="n">sendButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Send&quot;</span><span class="p">);</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">        </span><span class="n">Button</span><span class="w"> </span><span class="n">clearButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Clear&quot;</span><span class="p">);</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="w">        </span><span class="c1">// Area para mostrar la respuesta</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="w">        </span><span class="n">VerticalLayout</span><span class="w"> </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerticalLayout</span><span class="p">();</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="w">        </span><span class="n">messages</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="s">&quot;600px&quot;</span><span class="p">);</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="w">        </span><span class="c1">// Layout horizontal para los botones</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="w">        </span><span class="n">HorizontalLayout</span><span class="w"> </span><span class="n">buttonLayout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HorizontalLayout</span><span class="p">(</span><span class="n">sendButton</span><span class="p">,</span><span class="w"> </span><span class="n">clearButton</span><span class="p">);</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24"></a>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="w">        </span><span class="n">sendButton</span><span class="p">.</span><span class="na">addClickListener</span><span class="p">(</span><span class="n">click</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">messageInput</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="w">            </span><span class="c1">// Usando ParameterizedTypeReference para manejar el tipo de datos genérico</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="w">            </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ResponseDTO</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">responseEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restTemplate</span><span class="p">.</span><span class="na">exchange</span><span class="p">(</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="w">                    </span><span class="n">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;?message=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">,</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30"></a><span class="w">                    </span><span class="n">HttpMethod</span><span class="p">.</span><span class="na">GET</span><span class="p">,</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31"></a><span class="w">                    </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32"></a><span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">ResponseDTO</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33"></a><span class="w">            </span><span class="p">);</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34"></a>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35"></a>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">responseEntity</span><span class="p">.</span><span class="na">getStatusCode</span><span class="p">().</span><span class="na">is2xxSuccessful</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">responseEntity</span><span class="p">.</span><span class="na">getBody</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37"></a><span class="w">                </span><span class="n">String</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responseEntity</span><span class="p">.</span><span class="na">getBody</span><span class="p">().</span><span class="na">getData</span><span class="p">();</span><span class="w">  </span><span class="c1">// Extraer el mensaje de respuesta</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38"></a><span class="w">               </span><span class="c1">// messages.add(new Paragraph(&quot;Bot: &quot; + response));</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39"></a><span class="w">                </span><span class="n">Div</span><span class="w"> </span><span class="n">responseContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Div</span><span class="p">();</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40"></a><span class="w">                </span><span class="n">responseContainer</span><span class="p">.</span><span class="na">getStyle</span><span class="p">()</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41"></a><span class="w">                        </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;padding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;10px&quot;</span><span class="p">)</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42"></a><span class="w">                        </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;margin-top&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;10px&quot;</span><span class="p">)</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43"></a><span class="w">                        </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;background-color&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#f1f3f4&quot;</span><span class="p">)</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44"></a><span class="w">                        </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;border-radius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;8px&quot;</span><span class="p">)</span>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45"></a><span class="w">                        </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;border&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1px solid #e0e0e0&quot;</span><span class="p">);</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46"></a><span class="w">                </span><span class="n">responseContainer</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Paragraph</span><span class="p">(</span><span class="s">&quot;Bot: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">response</span><span class="p">));</span>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47"></a><span class="w">                </span><span class="n">messages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">responseContainer</span><span class="p">);</span>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49"></a><span class="w">                </span><span class="n">messages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Paragraph</span><span class="p">(</span><span class="s">&quot;Error: Failed to get response from backend&quot;</span><span class="p">));</span>
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-9-52"><a id="__codelineno-9-52" name="__codelineno-9-52"></a>
+</span><span id="__span-9-53"><a id="__codelineno-9-53" name="__codelineno-9-53"></a><span class="w">        </span><span class="c1">// Botón para limpiar el área de mensajes</span>
+</span><span id="__span-9-54"><a id="__codelineno-9-54" name="__codelineno-9-54"></a><span class="w">        </span><span class="n">clearButton</span><span class="p">.</span><span class="na">addClickListener</span><span class="p">(</span><span class="n">click</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-55"><a id="__codelineno-9-55" name="__codelineno-9-55"></a><span class="w">            </span><span class="n">messages</span><span class="p">.</span><span class="na">removeAll</span><span class="p">();</span>
+</span><span id="__span-9-56"><a id="__codelineno-9-56" name="__codelineno-9-56"></a><span class="w">            </span><span class="n">messageInput</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+</span><span id="__span-9-57"><a id="__codelineno-9-57" name="__codelineno-9-57"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-9-58"><a id="__codelineno-9-58" name="__codelineno-9-58"></a>
+</span><span id="__span-9-59"><a id="__codelineno-9-59" name="__codelineno-9-59"></a><span class="w">        </span><span class="n">add</span><span class="p">(</span><span class="n">messageInput</span><span class="p">,</span><span class="w"> </span><span class="n">buttonLayout</span><span class="p">,</span><span class="w"> </span><span class="n">messages</span><span class="p">);</span>
+</span><span id="__span-9-60"><a id="__codelineno-9-60" name="__codelineno-9-60"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-61"><a id="__codelineno-9-61" name="__codelineno-9-61"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><strong>Línea 1</strong> <code>@Route("chat")</code>: Define la ruta de esta vista como <code>/chat</code>. Esto significa que cuando accedemos a <code>http://localhost:8080/chat</code>, se mostrará esta vista.</p>
+</li>
+<li>
+<p><strong>Línea 2</strong> <code>@Menu(title = "Basic Calling", order = 1)</code>: Anotación personalizada (probablemente configurada en el proyecto) para definir el título y el orden del elemento en el menú de navegación. El título es "Basic Calling" y la posición en el menú es la primera (<code>order = 1</code>).</p>
+</li>
+<li>
+<p><strong>Línea 3</strong> <code>public class BasicCallView extends VerticalLayout</code>: Define la clase <code>BasicCallView</code> que extiende <code>VerticalLayout</code>. Esto significa que los componentes añadidos se organizarán verticalmente.</p>
+</li>
+<li>
+<p><strong>Línea 5</strong> <code>String backendUrl = "http://localhost:8080/chats/generateConversation";</code>: Define la URL del endpoint del backend al que se enviarán las solicitudes para obtener respuestas de la IA.</p>
+</li>
+<li>
+<p><strong>Línea 6</strong> <code>setSizeFull();</code>: Configura el tamaño de BasicCallView para que ocupe todo el espacio disponible en la pantalla.</p>
+</li>
+<li>
+<p><strong>Línea 9</strong> <code>RestTemplate restTemplate = new RestTemplate();</code>: Crea una instancia de RestTemplate, un cliente HTTP de Spring para realizar solicitudes HTTP al backend.</p>
+</li>
+</ol>
+<h3 id="configuracion-de-los-componentes-de-la-interfaz"><strong>Configuración de los Componentes de la Interfaz</strong></h3>
+<ul>
+<li>
+<p><strong>Línea 11</strong> <code>TextArea messageInput = new TextArea("Enter your message:");</code>: Crea un área de texto (<code>TextArea</code>) para que el usuario ingrese su mensaje. El texto "Enter your message:" se muestra como etiqueta.</p>
+</li>
+<li>
+<p><strong>Línea 12</strong> <code>messageInput.setWidth("600px");</code>: Define el ancho del área de texto como <code>600px</code>.</p>
+</li>
+<li>
+<p><strong>Línea 13</strong> <code>messageInput.setHeight("150px");</code>: Define la altura del área de texto como <code>150px</code>.</p>
+</li>
+<li>
+<p><strong>Línea 15</strong> <code>Button sendButton = new Button("Send");</code>: Crea un botón llamado "Send" para enviar el mensaje al backend.</p>
+</li>
+<li>
+<p><strong>Línea 16</strong> <code>Button clearButton = new Button("Clear");</code>: Crea un botón llamado "Clear" para limpiar el área de mensajes y el campo de entrada.</p>
+</li>
+</ul>
+<h3 id="configuracion-del-area-de-mensajes"><strong>Configuración del Área de Mensajes</strong></h3>
+<ul>
+<li>
+<p><strong>Línea 19</strong> <code>VerticalLayout messages = new VerticalLayout();</code>: Crea un <code>VerticalLayout</code> para organizar las respuestas generadas por la IA de manera vertical, una debajo de la otra.</p>
+</li>
+<li>
+<p><strong>Línea 20</strong> <code>messages.setWidth("600px");</code>: Define el ancho del área de mensajes como <code>600px</code>, igual que el área de entrada de texto, para mantener consistencia en el diseño.</p>
+</li>
+</ul>
+<h3 id="configuracion-del-layout-de-los-botones"><strong>Configuración del Layout de los Botones</strong></h3>
+<ul>
+<li><strong>Línea 23</strong> <code>HorizontalLayout buttonLayout = new HorizontalLayout(sendButton, clearButton);</code>: Crea un HorizontalLayout que contiene los botones sendButton y clearButton, organizándolos horizontalmente en la interfaz.</li>
+</ul>
+<h3 id="boton-send"><strong>Botón "Send"</strong></h3>
+<ul>
+<li>
+<p><strong>Línea 25</strong> <code>sendButton.addClickListener(click -&gt; { ... })</code>: Añade un listener al botón "Send" para definir lo que ocurre al hacer clic. Aquí se maneja el evento de enviar el mensaje al backend.</p>
+</li>
+<li>
+<p><strong>Línea 26</strong> <code>String message = messageInput.getValue();</code>: Obtiene el valor ingresado por el usuario en el messageInput y lo guarda en la variable message.</p>
+</li>
+<li>
+<p><strong>Líneas 28-33</strong> <code>ResponseEntity&lt;ResponseDTO&lt;String&gt;&gt; responseEntity = restTemplate.exchange(...)</code>: Realiza una solicitud HTTP GET al backend.</p>
+<ul>
+<li><code>backendUrl + "?message=" + message</code>: Construye la URL con el mensaje como parámetro de consulta.</li>
+<li><code>HttpMethod.GET</code>: Define el método de la solicitud como GET.</li>
+<li><code>null</code>: No se pasan encabezados o cuerpo en la solicitud.</li>
+<li><code>new ParameterizedTypeReference&lt;ResponseDTO&lt;String&gt;&gt;() {}</code>: Define el tipo de respuesta esperada como <code>ResponseDTO&lt;String&gt;</code>, permitiendo a <code>RestTemplate</code> manejar respuestas genéricas.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 36</strong> <code>if (responseEntity.getStatusCode().is2xxSuccessful() &amp;&amp; responseEntity.getBody() != null)</code>: Verifica si la solicitud fue exitosa (código 2xx) y si el cuerpo de la respuesta no es nulo.</p>
+</li>
+<li><strong>Línea 37</strong> <code>String response = responseEntity.getBody().getData();</code>: Obtiene el campo <code>data</code> de la respuesta, que contiene el mensaje generado por la IA.</li>
+<li><strong>Línea 39</strong> <code>Div responseContainer = new Div();</code>: Crea un contenedor (<code>Div</code>) para mostrar el mensaje de respuesta de la IA.</li>
+<li>
+<p><strong>Líneas 40-45</strong> <code>responseContainer.getStyle().set(...)</code>: Aplica estilos CSS para mejorar la apariencia del contenedor:</p>
+<ul>
+<li><code>padding</code>: Espacio interno de <code>10px</code>.</li>
+<li><code>margin-top</code>: Espacio superior de <code>10px</code> entre mensajes.</li>
+<li><code>background-color</code>: Fondo gris claro.</li>
+<li><code>border-radius</code>: Bordes redondeados de <code>8px</code>.</li>
+<li><code>border</code>: Borde gris claro.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 46</strong> <code>responseContainer.add(new Paragraph("Bot: " + response));</code>: Añade el mensaje de respuesta de la IA dentro del responseContainer, precedido por el texto "Bot:".</p>
+</li>
+<li><strong>Línea 47</strong> <code>messages.add(responseContainer);</code>: Agrega el <code>responseContainer</code> (con la respuesta) al área de mensajes (<code>messages</code>), para mostrarlo en la interfaz.</li>
+<li><strong>Líneas 48-50</strong> <code>else { messages.add(new Paragraph("Error: Failed to get response from backend")); }</code>: Si la solicitud falla, muestra un mensaje de error en el área de mensajes.</li>
+</ul>
+<h3 id="boton-clear"><strong>Botón "Clear"</strong></h3>
+<ul>
+<li><strong>Línea 54</strong> <code>clearButton.addClickListener(click -&gt; { ... })</code>: Añade un listener al botón "Clear" para definir lo que ocurre al hacer clic.</li>
+<li><strong>Línea 55</strong> <code>messages.removeAll();</code>: Limpia el área de mensajes, eliminando todos los mensajes mostrados previamente.</li>
+<li><strong>Línea 56</strong> <code>messageInput.clear();</code>: Limpia el área de texto de entrada, eliminando el mensaje ingresado por el usuario.</li>
+<li><strong>Línea 59</strong> <code>add(messageInput, buttonLayout, messages);</code>: Añade el área de texto de entrada (<code>messageInput</code>), el layout de botones (<code>buttonLayout</code>) y el área de mensajes (<code>messages</code>) al <code>BasicCallView</code>, organizándolos verticalmente.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Geovanny Mendoza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geovannymcode" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geovannycode" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/geovannycode/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
